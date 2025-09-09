@@ -11,6 +11,11 @@ const Navbar = () => {
       <ul className="nav-menu">
         <li>
           <NavLink to="/" end>
+            Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/displayproducts">
             Display Products
           </NavLink>
         </li>
@@ -20,6 +25,7 @@ const Navbar = () => {
           </NavLink>
         </li>
       </ul>
+
     </div>
   );
 };

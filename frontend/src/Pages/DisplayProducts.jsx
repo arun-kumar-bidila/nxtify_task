@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import Sort from "../components/sort/Sort";
-import Search from "../components/search/Search";
 import AllProducts from "../components/AllProducts/AllProducts";
-import "./DisplayProducts.css";
-
+import './CSS/DisplayProducts.css'
+import Search from "../components/search/Search";
+import Sort from "../components/sort/Sort";
 const DisplayProducts = () => {
   const [products] = useState([
     { id: 1, name: "Laptop", price: 1000 },

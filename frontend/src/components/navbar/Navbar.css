@@ -3,18 +3,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #1e293b; /* Dark slate background */
-  padding: 12px 24px;
-  color: #fff;
+  background-color: #ffffff; /* White background */
+  padding: 30px 50px; /* Increased top/bottom padding */
+  color: #1e293b; /* Dark text */
   font-family: Arial, sans-serif;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* Softer, lighter shadow */
 }
+
 
 .nav-title p {
   margin: 0;
   font-size: 20px;
   font-weight: bold;
-  color: #facc15; /* yellow-400 */
+  color: #1e293b; /* Dark text for title */
 }
 
 .nav-menu {
@@ -27,19 +28,17 @@
 
 .nav-menu li a {
   text-decoration: none;
-  color: white;
+  color: #1e293b; /* Dark text */
   transition: color 0.3s ease, border-bottom 0.3s ease;
   padding: 4px 8px;
 }
 
 .nav-menu li a.active {
-  color: #38bdf8; /* sky-400 */
+  color: #38bdf8; /* sky-400 active tab */
   border-bottom: 2px solid #38bdf8;
   font-weight: bold;
 }
 
-
-
-.nav-menu li:hover {
-  color: #38bdf8; /* sky-400 */
+.nav-menu li a:hover {
+  color: #38bdf8; /* Red on hover */
 }
