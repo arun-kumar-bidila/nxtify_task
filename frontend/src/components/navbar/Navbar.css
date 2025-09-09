@@ -1,0 +1,45 @@
+/* Navbar.css */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1e293b; /* Dark slate background */
+  padding: 12px 24px;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.nav-title p {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: #facc15; /* yellow-400 */
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu li a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  padding: 4px 8px;
+}
+
+.nav-menu li a.active {
+  color: #38bdf8; /* sky-400 */
+  border-bottom: 2px solid #38bdf8;
+  font-weight: bold;
+}
+
+
+
+.nav-menu li:hover {
+  color: #38bdf8; /* sky-400 */
+}
