@@ -1,8 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
 import "./Navbar.css";
 
 const Navbar = () => {
+  const [toggle,setToggel] = useState("false");
   return (
     <div className="navbar">
       <div className="nav-title">
@@ -13,7 +15,7 @@ const Navbar = () => {
         />
         <p>Plantify</p>
       </div>
-      <ul className="nav-menu">
+      <ul className="desktop-view nav-menu ">
         <li>
           <NavLink to="/" end>
             Home
