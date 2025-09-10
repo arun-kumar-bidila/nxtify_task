@@ -1,18 +1,32 @@
 import React from "react";
-import "./Item.css"; // Optional, for styling individual item
+import "./Item.css";
 
-const Item = ({ product }) => {
+const Item = ({ product, onDelete, onEdit }) => {
   if (!product) return null;
 
   return (
-    <div className="item-card">
-      <img src={product.image} alt={product.name} className="item-image" />
+    <div className="item-container">
+      {/* Left side: Image */}
+      <div className="item-image">
+        <img src={product.image} alt={product.name} />
+      </div>
+
+      {/* Right side: Details */}
       <div className="item-details">
         <h2 className="item-name">{product.name}</h2>
         <p className="item-category">Category: {product.category}</p>
-        <p className="item-price">Price: ${product.price}</p>
+        <p className="item-price">Price: ₹{product.price}</p>
         <p className="item-description">{product.description}</p>
-        <button className="add-to-cart-btn">Add to Cart</button>
+
+        {/* Action buttons */}
+        <div className="item-actions">
+          <button className="edit-btn" onClick={onEdit}>
+            Edit
+          </button>
+          <button className="delete-btn" onClick={onDelete}>
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   );

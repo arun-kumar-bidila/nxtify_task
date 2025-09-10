@@ -1,0 +1,92 @@
+.item-container {
+  display: flex;
+  gap: 40px;
+  padding: 40px;
+  max-width: 1200px;
+  margin: 40px auto; /* center horizontally with space on top */
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.item-image img {
+  width: 450px; /* larger image */
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.item-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.item-details h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.item-details p {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.item-actions {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.edit-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #e53935;
+  transform: scale(1.05);
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 900px) {
+  .item-container {
+    flex-direction: column;
+    padding: 20px;
+    gap: 25px;
+  }
+
+  .item-image img {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .item-actions {
+    justify-content: center;
+  }
+}

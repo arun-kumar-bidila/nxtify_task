@@ -24,21 +24,15 @@ const AddProduct = () => {
 
   // Default images for categories
   const defaultImages = {
-    Seeds: "https://res.cloudinary.com/duoenlwuj/image/upload/v1757482664/tree1_ab0xdb.jpg",
-    Accessories:
-      "https://res.cloudinary.com/duoenlwuj/image/upload/v1757482664/tree1_ab0xdb.jpg",
-    Gardening:
-      "https://res.cloudinary.com/duoenlwuj/image/upload/v1757482664/tree1_ab0xdb.jpg",
-    Pebbles:
-      "https://res.cloudinary.com/duoenlwuj/image/upload/v1757482664/tree1_ab0xdb.jpg",
-    Soil: "https://res.cloudinary.com/duoenlwuj/image/upload/v1757482664/tree1_ab0xdb.jpg",
-    Fertilizers:
-      "https://res.cloudinary.com/duoenlwuj/image/upload/v1757482664/tree1_ab0xdb.jpg",
-    Pots: "https://res.cloudinary.com/duoenlwuj/image/upload/v1757482664/tree1_ab0xdb.jpg",
-    Flowers:
-      "https://res.cloudinary.com/duoenlwuj/image/upload/v1757482664/tree1_ab0xdb.jpg",
-    Others:
-      "https://res.cloudinary.com/duoenlwuj/image/upload/v1757482664/tree1_ab0xdb.jpg",
+    Seeds: "https://res.cloudinary.com/duoenlwuj/image/upload/v1757490700/seeds2_fe0yjf.jpg",
+    Accessories: "https://res.cloudinary.com/duoenlwuj/image/upload/v1757490699/tool1_ylexby.jpg",
+    Gardening: "https://res.cloudinary.com/duoenlwuj/image/upload/v1757490700/happy_gardening4_aevxo3.jpg",
+    Pebbles: "https://res.cloudinary.com/duoenlwuj/image/upload/v1757490699/pebbles_svnvu5.jpg",
+    Soil: "https://res.cloudinary.com/duoenlwuj/image/upload/v1757491228/soil_vjasfl.jpg",
+    Fertilizers: "https://res.cloudinary.com/duoenlwuj/image/upload/v1757490699/accessories_zufntx.jpg",
+    Pots: "https://res.cloudinary.com/duoenlwuj/image/upload/v1757490700/pot1_rkszcw.jpg",
+    Flowers: "https://res.cloudinary.com/duoenlwuj/image/upload/v1757490699/flowerbulbs_dkllzy.jpg",
+    Others: "https://res.cloudinary.com/duoenlwuj/image/upload/v1757491228/tree7_qf1tkq.jpg",
   };
 
   const handleSubmit = async (e) => {
