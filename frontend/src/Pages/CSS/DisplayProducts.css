@@ -1,18 +1,71 @@
-.products-container {
+.products-page {
   padding: 20px;
-  font-family: Arial, sans-serif;
 }
 
-.controls {
+.top-controls {
+  margin-bottom: 20px;
   display: flex;
-  justify-content: space-between; /* spread apart */
   align-items: center;
-  margin-bottom: 15px;
-  gap: 15px; /* spacing between search & sort */
+  gap: 10px;
 }
 
-.controls input,
-.controls select {
+.sort-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.sort-buttons button {
+  padding: 6px 12px;
+  border: 1px solid #4caf50;
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.sort-buttons button:hover {
+  background: #f1f1f1;
+}
+
+.sort-buttons button.active {
+  background: #4caf50;
+  color: white;
+}
+
+.products-layout {
+  display: flex;
+  gap: 20px;
+}
+
+.products-list {
+  flex: 3;
+}
+
+.sidebar {
+  flex: 1;
+  border-left: 1px solid #ddd;
+  padding-left: 20px;
+}
+
+.search-box input {
+  width: 100%;
   padding: 8px;
-  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.category-filter ul {
+  list-style: none;
+  padding: 0;
+}
+
+.category-filter li {
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.category-filter li:hover,
+.category-filter li.active {
+  background-color: #4caf50;
+  color: white;
 }

@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="nav-title">
-        <p>Product Management System</p>
+        <p>Plantify</p>
       </div>
       <ul className="nav-menu">
         <li>

@@ -10,6 +10,19 @@ exports.getAllProducts = async (req, res) => {
   }
 };
 
+// Get single product by ID
+exports.getProductById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const product = await Product.findById(id);
+    if (!product) return res.status(404).json({ message: "Product not found" });
+    res.json(product);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
 // ADD new product
 exports.addProduct = async (req, res) => {
   const { name, price, category, description, image } = req.body;

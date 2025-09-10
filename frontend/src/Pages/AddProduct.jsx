@@ -10,39 +10,60 @@ const AddProduct = () => {
 
   // Expanded categories
   const categories = [
-    "Clothing",
-    "Appliances",
-    "Essentials",
-    "Electronics",
-    "Furniture",
-    "Footwear",
+    "Plants",
+    "Seeds",
     "Accessories",
-    "Beauty",
-    "Sports",
+    "Gardening",
+    "Pebbles",
+    "Soil",
+    "Fertilizers",
+    "Pots",
+    "Flowers",
     "Others",
   ];
+
+  // Default images for categories
+  const defaultImages = {
+    Seeds: "https://res.cloudinary.com/duoenlwuj/image/upload/v1757482664/tree1_ab0xdb.jpg",
+    Accessories:
+      "https://res.cloudinary.com/duoenlwuj/image/upload/v1757482664/tree1_ab0xdb.jpg",
+    Gardening:
+      "https://res.cloudinary.com/duoenlwuj/image/upload/v1757482664/tree1_ab0xdb.jpg",
+    Pebbles:
+      "https://res.cloudinary.com/duoenlwuj/image/upload/v1757482664/tree1_ab0xdb.jpg",
+    Soil: "https://res.cloudinary.com/duoenlwuj/image/upload/v1757482664/tree1_ab0xdb.jpg",
+    Fertilizers:
+      "https://res.cloudinary.com/duoenlwuj/image/upload/v1757482664/tree1_ab0xdb.jpg",
+    Pots: "https://res.cloudinary.com/duoenlwuj/image/upload/v1757482664/tree1_ab0xdb.jpg",
+    Flowers:
+      "https://res.cloudinary.com/duoenlwuj/image/upload/v1757482664/tree1_ab0xdb.jpg",
+    Others:
+      "https://res.cloudinary.com/duoenlwuj/image/upload/v1757482664/tree1_ab0xdb.jpg",
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let imageUrl =
-      "https://res.cloudinary.com/your_cloud_name/image/upload/v123456/default.jpg"; // fallback default image
+    let imageUrl = defaultImages[category] || defaultImages["Others"]; // fallback
 
+    // If user uploaded image → upload to Cloudinary
     if (imageFile) {
       const data = new FormData();
       data.append("file", imageFile);
-      data.append("upload_preset", "your_unsigned_preset");
+      data.append("upload_preset", "plantify");
 
       try {
         const res = await fetch(
-          "https://api.cloudinary.com/v1_1/your_cloud_name/image/upload",
+          "https://api.cloudinary.com/v1_1/duoenlwuj/image/upload",
           {
             method: "POST",
             body: data,
           }
         );
         const uploadRes = await res.json();
-        imageUrl = uploadRes.secure_url;
+        if (uploadRes.secure_url) {
+          imageUrl = uploadRes.secure_url; // replace with uploaded image URL
+        }
       } catch (err) {
         console.error("Cloudinary upload failed", err);
       }

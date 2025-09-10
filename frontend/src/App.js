@@ -1,8 +1,9 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./Pages/HomePage";
-import DisplayProducts from "./Pages/DisplayProducts";
-import AddProduct from "./Pages/AddProduct";
-import Navbar from "./components/navbar/Navbar";
+import Home from "./pages/HomePage";
+import DisplayProducts from "./pages/DisplayProducts";
+import AddProduct from "./pages/AddProduct";
+import Navbar from "./components/Navbar/Navbar";
+import SeeProduct from "./pages/SeeProduct";
 function App() {
   return (
     <>
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Home />} />  
         <Route path="/displayproducts" element={<DisplayProducts />} />
         <Route path="/addproduct" element={<AddProduct />} />
+        <Route path="/product/:id" element={<SeeProduct />} />
       </Routes>
     </>
   );
