@@ -6,6 +6,11 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="nav-title">
+        <img
+          src="https://res.cloudinary.com/duoenlwuj/image/upload/v1757490700/logo_hnx91w.jpg"
+          alt="Plantify Logo"
+          className="nav-logo"
+        />
         <p>Plantify</p>
       </div>
       <ul className="nav-menu">
@@ -25,7 +30,6 @@ const Navbar = () => {
           </NavLink>
         </li>
       </ul>
-
     </div>
   );
 };

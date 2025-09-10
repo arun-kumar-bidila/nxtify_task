@@ -46,3 +46,9 @@
   font-size: 13px;
   color: #666;
 }
+/* remove default link styles */
+.product-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block; /* make link behave like a block (wraps the card fully) */
+}

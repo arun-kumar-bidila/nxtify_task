@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import './CSS/HomePage.css'
+import './CSS/HomePage.css';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -8,16 +8,19 @@ const Home = () => {
   return (
     <div className="home-container">
       <div className="home-content">
-        <h1>Welcome to the Admin Panel</h1>
-        <p>
-          Manage your product inventory efficiently. Add, update, or view all products in one place.
+        <h1 className="home-title">Welcome to Plantify 🌿</h1>
+        <p className="home-description">
+          Plantify is your personalized platform to manage all your products with ease.  
+          Keep track of your plants, add new items, and organize everything in one place with a refreshing green touch.  
         </p>
-        <button onClick={() => navigate("/")}>See All Products</button>
+        <button className="home-btn" onClick={() => navigate("/displayproducts")}>
+          Explore Products
+        </button>
       </div>
       <div className="home-image">
         <img
-          src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-          alt="Admin Dashboard"
+          src="https://res.cloudinary.com/duoenlwuj/image/upload/v1757482664/tree1_ab0xdb.jpg"
+          alt="Plantify Dashboard"
         />
       </div>
     </div>

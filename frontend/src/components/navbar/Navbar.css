@@ -1,44 +1,59 @@
 /* Navbar.css */
 .navbar {
+  
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #ffffff; /* White background */
-  padding: 30px 50px; /* Increased top/bottom padding */
+  padding: 20px 40px; /* Balanced padding */
   color: #1e293b; /* Dark text */
   font-family: Arial, sans-serif;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* Softer, lighter shadow */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); /* Softer shadow */
 }
 
+/* Logo + Title Section */
+.nav-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-logo {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
 
 .nav-title p {
-  margin: 0;
-  font-size: 20px;
+  font-size: 1.4rem;
   font-weight: bold;
-  color: #1e293b; /* Dark text for title */
+  color: #15803d; /* Green-700 */
+  margin: 0;
 }
 
+/* Menu Tabs */
 .nav-menu {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 25px;
   margin: 0;
   padding: 0;
 }
 
 .nav-menu li a {
   text-decoration: none;
-  color: #1e293b; /* Dark text */
+  color: #1e293b; /* Default dark */
   transition: color 0.3s ease, border-bottom 0.3s ease;
-  padding: 4px 8px;
+  padding: 6px 10px;
+  font-size: 1rem;
 }
 
 .nav-menu li a.active {
-  color: #38bdf8; /* sky-400 active tab */
-  border-bottom: 2px solid #38bdf8;
+  color: #16a34a; /* Green-600 active tab */
+  border-bottom: 2px solid #16a34a;
   font-weight: bold;
 }
 
 .nav-menu li a:hover {
-  color: #38bdf8; /* Red on hover */
+  color: #22c55e; /* Green-500 hover */
 }
