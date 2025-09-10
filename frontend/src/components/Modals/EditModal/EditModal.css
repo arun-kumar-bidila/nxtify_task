@@ -14,21 +14,34 @@
 .edit-modal {
   width: 500px;
   max-width: 95%;
+  max-height: 70%;
+  overflow-y: scroll;
   background: #fff;
   border-radius: 12px;
-  padding: 30px 25px;
+  padding: 0px;
   box-shadow: 0 5px 20px rgba(0,0,0,0.2);
 }
 
 .edit-modal h2 {
-  margin-bottom: 20px;
-  text-align: center;
+  position: sticky;
+  top: 0px;
+  margin: 0px;
+  padding: 24px 28px;
+  background-color: #f0fdf4;;
+  text-align: left;
+}
+.edit-modal form{
+  padding: 8px 28px;
+  padding-bottom: 16px;
 }
 
 .edit-form label {
   display: block;
   margin-top: 15px;
   font-weight: 600;
+  text-align: left;
+  margin-top: 16px;
+  margin-bottom: 16px;
 }
 
 .edit-form input,
@@ -40,6 +53,9 @@
   border: 1px solid #ccc;
   font-size: 1rem;
   box-sizing: border-box;
+}
+.edit-form textarea {
+  min-height: 160px;
 }
 
 .image-preview-container {
@@ -59,7 +75,7 @@
 
 .modal-actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 15px;
   margin-top: 25px;
 }

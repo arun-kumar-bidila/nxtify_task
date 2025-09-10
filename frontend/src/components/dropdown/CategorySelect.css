@@ -1,0 +1,38 @@
+.category-select {
+    width: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.category-select label {
+  margin-right: 10px;
+  font-weight: bold;
+  color: #15803d; /* Green theme */
+}
+
+.category-select select {
+    width: 100%;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid #16a34a;
+    color: #16a34a;
+}
+
+.category-select select:focus {
+  border-color: #16a34a;
+  outline: none;
+  box-shadow: 0 0 4px rgba(22, 163, 74, 0.4);
+}
+
+.selected-text {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: #1e293b;
+}
+@media (min-width: 1024px) {
+    .category-select{
+        display: none;
+    }
+}

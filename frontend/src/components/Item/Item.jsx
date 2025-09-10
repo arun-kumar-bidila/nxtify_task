@@ -14,8 +14,8 @@ const Item = ({ product, onDelete, onEdit }) => {
       {/* Right side: Details */}
       <div className="item-details">
         <h2 className="item-name">{product.name}</h2>
-        <p className="item-category">Category: {product.category}</p>
-        <p className="item-price">Price: ₹{product.price}</p>
+        <p className="item-category"><span>Category:</span>{product.category}</p>
+        <p className="item-price"><span>Price: </span>₹{product.price}</p>
         <p className="item-description">{product.description}</p>
 
         {/* Action buttons */}

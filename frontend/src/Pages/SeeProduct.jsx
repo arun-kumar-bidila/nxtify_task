@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Item from "../components/Item/Item";
 import DeleteModal from "../components/Modals/DeleteModal/DeleteModal";
 import EditModal from "../components/Modals/EditModal/EditModal";
+import { useNavigate } from "react-router-dom";
 
 const SeeProduct = () => {
   const { id } = useParams();
@@ -11,11 +12,12 @@ const SeeProduct = () => {
   const [error, setError] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/products/${id}`);
+        const res = await fetch(`http://localhost:8080/api/products/${id}`);
         if (!res.ok) throw new Error("Failed to fetch product");
         const data = await res.json();
         setProduct(data);
@@ -30,10 +32,10 @@ const SeeProduct = () => {
 
   const handleDelete = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/products/${id}`, { method: "DELETE" });
+      const res = await fetch(`http://localhost:8080/api/products/${id}`, { method: "DELETE" });
       if (!res.ok) throw new Error("Failed to delete product");
       alert("Product deleted successfully");
-      // redirect or update state
+      navigate("/displayproducts");
     } catch (err) {
       alert(err.message);
     }
@@ -42,7 +44,7 @@ const SeeProduct = () => {
 
   const handleEditSave = async (updatedData) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/products/${id}`, {
+      const res = await fetch(`http://localhost:8080/api/products/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedData)
@@ -62,12 +64,12 @@ const SeeProduct = () => {
 
   return (
     <>
+    <div style={{width:"100%",minHeight:"calc(100vh - 75px)", background:"#f0fdf4"}}>
       <Item 
         product={product} 
         onDelete={() => setShowDeleteModal(true)} 
         onEdit={() => setShowEditModal(true)} 
       />
-
       {showDeleteModal && (
         <DeleteModal 
           message="Are you sure you want to delete this product?" 
@@ -83,6 +85,10 @@ const SeeProduct = () => {
           onClose={() => setShowEditModal(false)} 
         />
       )}
+    </div>
+      
+
+      
     </>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./CSS/AddProduct.css";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
   const [name, setName] = useState("");
@@ -7,8 +8,10 @@ const AddProduct = () => {
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [imageFile, setImageFile] = useState(null);
+  const [preview, setPreview] = useState(null);
+  const navigate = useNavigate();
+  const [errors, setErrors] = useState({});
 
-  // Expanded categories
   const categories = [
     "Plants",
     "Seeds",
@@ -22,7 +25,6 @@ const AddProduct = () => {
     "Others",
   ];
 
-  // Default images for categories
   const defaultImages = {
     Seeds: "https://res.cloudinary.com/duoenlwuj/image/upload/v1757490700/seeds2_fe0yjf.jpg",
     Accessories: "https://res.cloudinary.com/duoenlwuj/image/upload/v1757490699/tool1_ylexby.jpg",
@@ -35,12 +37,40 @@ const AddProduct = () => {
     Others: "https://res.cloudinary.com/duoenlwuj/image/upload/v1757491228/tree7_qf1tkq.jpg",
   };
 
+  // ✅ Validation
+  const validateForm = () => {
+    let newErrors = {};
+
+    if (!name.trim()) newErrors.name = "Product name is required";
+    if (!price || price <= 0) newErrors.price = "Enter a valid price";
+    if (!category) newErrors.category = "Please select a category";
+    if (!description.trim() || description.length < 10) {
+      newErrors.description = "Description must be at least 10 characters";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // ✅ Handle image selection + preview
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setImageFile(file);
+    if (file) {
+      setPreview(URL.createObjectURL(file));
+    } else {
+      setPreview(null);
+    }
+  };
+
+  // ✅ Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let imageUrl = defaultImages[category] || defaultImages["Others"]; // fallback
+    if (!validateForm()) return;
 
-    // If user uploaded image → upload to Cloudinary
+    let imageUrl = defaultImages[category] || defaultImages["Others"];
+
     if (imageFile) {
       const data = new FormData();
       data.append("file", imageFile);
@@ -56,7 +86,7 @@ const AddProduct = () => {
         );
         const uploadRes = await res.json();
         if (uploadRes.secure_url) {
-          imageUrl = uploadRes.secure_url; // replace with uploaded image URL
+          imageUrl = uploadRes.secure_url;
         }
       } catch (err) {
         console.error("Cloudinary upload failed", err);
@@ -66,7 +96,7 @@ const AddProduct = () => {
     const productData = { name, price, category, description, image: imageUrl };
 
     try {
-      const res = await fetch("http://localhost:5000/api/products", {
+      const res = await fetch("http://localhost:8080/api/products", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(productData),
@@ -79,6 +109,9 @@ const AddProduct = () => {
         setCategory("");
         setDescription("");
         setImageFile(null);
+        setPreview(null);
+        setErrors({});
+        navigate("/displayproducts");
       } else {
         alert("❌ Error adding product");
       }
@@ -88,56 +121,79 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="add-product-container">
-      <h2>Add Product</h2>
-      <form onSubmit={handleSubmit} className="add-product-form">
-        <input
-          type="text"
-          placeholder="Product Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
+    <div className="add-product-page">
+      <div className="add-product-container">
+        <h2>Add Product</h2>
+        <form onSubmit={handleSubmit} className="add-product-form">
+          {/* Name */}
+          <input
+            type="text"
+            placeholder="Product Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          {errors.name && <p className="error-text">{errors.name}</p>}
 
-        <input
-          type="number"
-          placeholder="Price"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          required
-        />
+          {/* Price */}
+          <input
+            type="number"
+            placeholder="Price"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+          />
+          {errors.price && <p className="error-text">{errors.price}</p>}
 
-        <div className="category-section">
-          <label>Category:</label>
-          <div className="category-buttons">
-            {categories.map((cat) => (
-              <button
-                type="button"
-                key={cat}
-                className={category === cat ? "selected" : ""}
-                onClick={() => setCategory(cat)}
-              >
-                {cat}
-              </button>
-            ))}
+          {/* Category */}
+          <div className="category-section">
+            <label>Category:</label>
+            <div className="category-buttons">
+              {categories.map((cat) => (
+                <button
+                  type="button"
+                  key={cat}
+                  className={category === cat ? "selected" : ""}
+                  onClick={() => setCategory(cat)}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+            {errors.category && (
+              <p className="error-text">{errors.category}</p>
+            )}
           </div>
-        </div>
 
-        <textarea
-          placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
+          {/* Description */}
+          <textarea
+            placeholder="Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          {errors.description && (
+            <p className="error-text">{errors.description}</p>
+          )}
 
-        <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => setImageFile(e.target.files[0])}
-        />
+          {/* Image Upload */}
+          <div className="image-upload">
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+            />
+            <p className="note">* Image upload is optional</p>
 
-        <button type="submit">Add Product</button>
-      </form>
+            {/* Preview */}
+            {preview && (
+              <div className="image-preview">
+                <img src={preview} alt="Preview" />
+              </div>
+            )}
+          </div>
+
+          {/* Submit */}
+          <button type="submit">Add Product</button>
+        </form>
+      </div>
     </div>
   );
 };

@@ -1,9 +1,14 @@
+.add-product-page{
+  width: 100%;
+  min-height: calc(100vh - 75px);
+  background-color: #f0fdf4;
+}
 .add-product-container {
   max-width: 700px;
   margin: 40px auto;
-  background: #ffffff;
   padding: 35px 40px;
   border-radius: 12px;
+  background-color: white;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -21,6 +26,11 @@
   display: flex;
   flex-direction: column;
   gap: 18px;
+}
+.error-text {
+  color: #dc2626; /* red-600 */
+  font-size: 0.9rem;
+  margin: 4px 0 10px;
 }
 
 /* Inputs + textarea */
@@ -115,4 +125,32 @@ input[type="file"] {
 .add-product-form button[type="submit"]:active {
   transform: translateY(0);
   box-shadow: none;
+}
+
+
+.error-text {
+  color: #dc2626;
+  font-size: 0.9rem;
+  margin: 4px 0 10px;
+}
+
+.image-upload {
+  margin: 15px 0;
+}
+
+.note {
+  font-size: 0.85rem;
+  color: #6b7280; /* gray-500 */
+  margin-top: 5px;
+}
+
+.image-preview {
+  margin-top: 10px;
+}
+
+.image-preview img {
+  max-width: 150px;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb; /* gray-200 */
 }

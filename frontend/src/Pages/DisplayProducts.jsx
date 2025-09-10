@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import AllProducts from "../components/AllProducts/AllProducts";
+import CategorySelect from "../components/dropdown/CategorySelect";
 import "./CSS/DisplayProducts.css";
+import Search from "../components/search/Search";
 
 const DisplayProducts = () => {
   const [products, setProducts] = useState([]);
@@ -15,7 +17,7 @@ const DisplayProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/products");
+        const res = await fetch("http://localhost:8080/api/products");
         if (!res.ok) throw new Error("Failed to fetch products");
         const data = await res.json();
         setProducts(data);
@@ -48,12 +50,13 @@ const DisplayProducts = () => {
   if (error) return <p style={{ color: "red" }}>❌ {error}</p>;
 
   const categories = [...new Set(products.map((p) => p.category))];
+  console.log(categories);
 
   return (
-    <div className="products-page">
-      {/* ✅ Sort buttons row */}
-      <div className="top-controls">
-        <label>Sort By: </label>
+    <>
+    <div className="continer-wrapper">
+      <div className="main-content-wrapper">
+    <div className="mobile-top-controls">
         <div className="sort-buttons">
           <button
             className={sortBy === "lowToHigh" ? "active" : ""}
@@ -67,66 +70,54 @@ const DisplayProducts = () => {
           >
             Price: High → Low
           </button>
-          <button
-            className={sortBy === "above20" ? "active" : ""}
-            onClick={() => setSortBy("above20")}
-          >
-            Above 20
-          </button>
-          <button
-            className={sortBy === "above40" ? "active" : ""}
-            onClick={() => setSortBy("above40")}
-          >
-            Above 40
-          </button>
-          <button
-            className={sortBy === "above60" ? "active" : ""}
-            onClick={() => setSortBy("above60")}
-          >
-            Above 60
-          </button>
+          
         </div>
-      </div>
-
+        <CategorySelect setCategoryFilter={setCategoryFilter}/>
+        <Search value={search} onChange={setSearch}/>
+    </div>
+    <div className="products-page">
       {/* ✅ Two-column layout */}
       <div className="products-layout">
         <div className="products-list">
           <AllProducts products={filteredProducts} />
         </div>
 
-        <div className="sidebar">
-          <div className="search-box">
-            <input
-              type="text"
-              placeholder="Search products..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </div>
-
-          <div className="category-filter">
-            <h4>Filter by Category</h4>
-            <ul>
-              <li
-                className={!categoryFilter ? "active" : ""}
-                onClick={() => setCategoryFilter("")}
-              >
-                All
-              </li>
-              {categories.map((cat) => (
-                <li
-                  key={cat}
-                  className={categoryFilter === cat ? "active" : ""}
-                  onClick={() => setCategoryFilter(cat)}
-                >
-                  {cat}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
       </div>
     </div>
+    </div>
+      <div className="sidebar">
+            <div className="search-box">
+              <input
+                type="text"
+                placeholder="Search products..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </div>
+
+            <div className="category-filter">
+              <h4>Filter by Category</h4>
+              <ul>
+                <li
+                  className={!categoryFilter ? "active" : ""}
+                  onClick={() => setCategoryFilter("")}
+                >
+                  All
+                </li>
+                {categories.map((cat) => (
+                  <li
+                    key={cat}
+                    className={categoryFilter === cat ? "active" : ""}
+                    onClick={() => setCategoryFilter(cat)}
+                  >
+                    {cat}
+                  </li>
+                ))}
+              </ul>
+            </div>
+      </div>
+    </div>
+    </>
   );
 };
 

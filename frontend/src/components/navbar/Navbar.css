@@ -1,87 +1,20 @@
-Navbar.css
-.navbar {
-  position: sticky;
-  top:0px;
-  left: 0px;
-  right: 0px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #ffffff; /* White background */
-  padding: 20px 40px; /* Balanced padding */
-  color: #1e293b; /* Dark text */
-  font-family: Arial, sans-serif;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); /* Softer shadow */
-}
-
-/* Logo + Title Section */
-.nav-title {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.nav-logo {
-  width: 45px;
-  height: 45px;
-  object-fit: contain;
-}
-
-.nav-title p {
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: #15803d; /* Green-700 */
-  margin: 0;
-}
-
-/* Menu Tabs */
-.nav-menu {
-  list-style: none;
-  display: flex;
-  gap: 25px;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-menu li a {
-  text-decoration: none;
-  color: #1e293b; /* Default dark */
-  transition: color 0.3s ease, border-bottom 0.3s ease;
-  padding: 6px 10px;
-  font-size: 1rem;
-}
-
-.nav-menu li a.active {
-  color: #16a34a; /* Green-600 active tab */
-  border-bottom: 2px solid #16a34a;
-  font-weight: bold;
-}
-
-.nav-menu li a:hover {
-  color: #22c55e; /* Green-500 hover */
-}
-
-
-
-/* coed for responsive  */
-
-/* Base Navbar Styles (Desktop already done) */
+/* Base Navbar */
 .navbar {
   position: sticky;
   top: 0px;
-  left: 0px;
-  right: 0px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #ffffff; /* White background */
-  padding: 20px 40px; /* Balanced padding */
-  color: #1e293b; /* Dark text */
+  background-color: #ffffff;
+  padding: 20px 40px;
+  color: #1e293b;
   font-family: Arial, sans-serif;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); /* Softer shadow */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   z-index: 1000;
 }
-
+.mobile-view{
+  display: none;
+}
 /* Logo + Title */
 .nav-title {
   display: flex;
@@ -98,11 +31,11 @@ Navbar.css
 .nav-title p {
   font-size: 1.4rem;
   font-weight: bold;
-  color: #15803d; /* Green-700 */
+  color: #15803d;
   margin: 0;
 }
 
-/* Menu Tabs (Desktop) */
+/* Nav Menu (Desktop default) */
 .nav-menu {
   list-style: none;
   display: flex;
@@ -129,52 +62,72 @@ Navbar.css
   color: #22c55e;
 }
 
-/* 📱 Mobile & Tablet Responsive */
+/* Hide menu icon in desktop */
+.menu-icon {
+  display: none;
+  cursor: pointer;
+}
+
+/* 📱 Tablet & Mobile */
 @media (max-width: 1024px) {
-  .desktop-view{
-    display: block;
-  }
   .navbar {
     padding: 15px 25px;
   }
-
   .nav-title p {
     font-size: 1.2rem;
-  }
-
-  .nav-menu {
-    gap: 18px;
   }
 }
 
 @media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 15px 20px;
+  /* Show menu icon */
+  .menu-icon {
+    display: block;
   }
 
-  .nav-title {
-    margin-bottom: 10px;
-  }
-
+  /* Hide menu by default */
   .nav-menu {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
     flex-direction: column;
-    width: 100%;
+    background: #ffffff;
     gap: 12px;
+    padding: 15px 20px;
+    z-index: 99;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-200%);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    z-index: 1000;
+  }
+
+  /* Show menu when active */
+  .nav-menu.active {
+    display: flex;
+    transform: translateY(0);
+    opacity: 1;
   }
 
   .nav-menu li a {
     font-size: 1rem;
-    padding: 8px 0;
+    padding: 10px 0;
     width: 100%;
     display: block;
-    border-radius: 6px;
-    transition: background 0.3s ease;
   }
 
+  .nav-menu li a.active{
+    border: none;
+  }
   .nav-menu li a:hover {
-    background: #f0fdf4; /* Light green hover on mobile */
+    background: #f0fdf4;
     color: #15803d;
   }
 }
+
+@media (max-width: 480px){
+  .menu-icon {
+    display: block;
+  }
+}
+
