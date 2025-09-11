@@ -15,8 +15,6 @@ const defaultImages = {
 
 const categories = Object.keys(defaultImages);
 
-const CLOUDINARY_UPLOAD_PRESET = "plantify";
-const CLOUDINARY_CLOUD_NAME = "duoenlwuj";
 
 const EditModal = ({ product, onSave, onClose }) => {
   const [formData, setFormData] = useState({
@@ -26,10 +24,10 @@ const EditModal = ({ product, onSave, onClose }) => {
     description: "",
     image: ""
   });
-  const [selectedFile, setSelectedFile] = useState(null); // file to upload
-  const [preview, setPreview] = useState(""); // image preview
+  const [selectedFile, setSelectedFile] = useState(null); 
+  const [preview, setPreview] = useState(""); 
   const [uploading, setUploading] = useState(false);
-  const fileInputRef = useRef(null); // ref for file input
+  const fileInputRef = useRef(null); 
 
   useEffect(() => {
     if (product) {
@@ -58,7 +56,7 @@ const EditModal = ({ product, onSave, onClose }) => {
   const handleRemoveImage = () => {
     setSelectedFile(null);
     setPreview("");
-    if (fileInputRef.current) fileInputRef.current.value = ""; // reset file input
+    if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
   const handleSubmit = async (e) => {
@@ -70,10 +68,10 @@ const EditModal = ({ product, onSave, onClose }) => {
     if (selectedFile) {
       const formDataCloud = new FormData();
       formDataCloud.append("file", selectedFile);
-      formDataCloud.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+      formDataCloud.append("upload_preset",`${process.env.REACT_APP_CLOUDINARY_PRESET}`);
 
       try {
-        const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, {
+        const res = await fetch(`${process.env.REACT_APP_CLOUDINARY_URL}`, {
           method: "POST",
           body: formDataCloud
         });

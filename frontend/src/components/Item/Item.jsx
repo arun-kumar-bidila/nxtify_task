@@ -6,19 +6,19 @@ const Item = ({ product, onDelete, onEdit }) => {
 
   return (
     <div className="item-container">
-      {/* Left side: Image */}
+     
       <div className="item-image">
         <img src={product.image} alt={product.name} />
       </div>
 
-      {/* Right side: Details */}
+      
       <div className="item-details">
         <h2 className="item-name">{product.name}</h2>
         <p className="item-category"><span>Category:</span>{product.category}</p>
         <p className="item-price"><span>Price: </span>₹{product.price}</p>
         <p className="item-description">{product.description}</p>
 
-        {/* Action buttons */}
+        
         <div className="item-actions">
           <button className="edit-btn" onClick={onEdit}>
             Edit

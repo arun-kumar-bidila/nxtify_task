@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom"; // <-- Import Link
+import { Link } from "react-router-dom"; 
 import "./AllProducts.css";
 
 const AllProducts = ({ products }) => {
@@ -12,7 +12,7 @@ const AllProducts = ({ products }) => {
       {products.map((product) => (
         <Link
           key={product._id}
-          to={`/product/${product._id}`} // <-- Navigate to SeeProduct page
+          to={`/product/${product._id}`} 
           className="product-card-link"
         >
           <div className="product-card">

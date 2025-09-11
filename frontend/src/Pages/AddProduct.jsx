@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./CSS/AddProduct.css";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
+const API_URL = process.env.REACT_APP_API_URL
 const AddProduct = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -37,7 +39,7 @@ const AddProduct = () => {
     Others: "https://res.cloudinary.com/duoenlwuj/image/upload/v1757491228/tree7_qf1tkq.jpg",
   };
 
-  // ✅ Validation
+ 
   const validateForm = () => {
     let newErrors = {};
 
@@ -49,10 +51,14 @@ const AddProduct = () => {
     }
 
     setErrors(newErrors);
+
+    
+    Object.values(newErrors).forEach((err) => toast.error(err));
+
     return Object.keys(newErrors).length === 0;
   };
 
-  // ✅ Handle image selection + preview
+  
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setImageFile(file);
@@ -63,7 +69,7 @@ const AddProduct = () => {
     }
   };
 
-  // ✅ Submit
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -74,11 +80,11 @@ const AddProduct = () => {
     if (imageFile) {
       const data = new FormData();
       data.append("file", imageFile);
-      data.append("upload_preset", "plantify");
+      data.append("upload_preset", `${process.env.REACT_APP_CLOUDINARY_PRESET}`);
 
       try {
         const res = await fetch(
-          "https://api.cloudinary.com/v1_1/duoenlwuj/image/upload",
+          `${process.env.REACT_APP_CLOUDINARY_URL}`,
           {
             method: "POST",
             body: data,
@@ -89,6 +95,7 @@ const AddProduct = () => {
           imageUrl = uploadRes.secure_url;
         }
       } catch (err) {
+        toast.error("Cloudinary upload failed!");
         console.error("Cloudinary upload failed", err);
       }
     }
@@ -96,14 +103,14 @@ const AddProduct = () => {
     const productData = { name, price, category, description, image: imageUrl };
 
     try {
-      const res = await fetch("http://localhost:8080/api/products", {
+      const res = await fetch(`${API_URL}/products`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(productData),
       });
 
       if (res.ok) {
-        alert("✅ Product added successfully!");
+        toast.success("Product added successfully!");
         setName("");
         setPrice("");
         setCategory("");
@@ -113,9 +120,10 @@ const AddProduct = () => {
         setErrors({});
         navigate("/displayproducts");
       } else {
-        alert("❌ Error adding product");
+        toast.error("Error adding product");
       }
     } catch (err) {
+      toast.error("Something went wrong!");
       console.error(err);
     }
   };

@@ -3,7 +3,7 @@
   gap: 40px;
   padding: 40px;
   max-width: 1200px;
-  margin: 40px auto; /* center horizontally with space on top */
+  margin: 40px auto; 
   border-radius: 12px;
   display: flex;
   flex-direction: row;
@@ -12,7 +12,7 @@
 }
 
 .item-image img {
-  width: 450px; /* larger image */
+  width: 450px; 
   height: auto;
   border-radius: 12px;
   object-fit: cover;
@@ -84,7 +84,7 @@
   transform: scale(1.05);
 }
 
-/* Responsive for smaller screens */
+
 @media (max-width: 900px) {
   .item-container {
     flex-direction: column;

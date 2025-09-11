@@ -1,4 +1,6 @@
-import React from "react";
+
+/* Sort Functionality has been moved to Display Products */
+
 
 const Sort = ({ value, onChange }) => {
   return (

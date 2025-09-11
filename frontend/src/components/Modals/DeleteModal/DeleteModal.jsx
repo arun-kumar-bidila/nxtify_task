@@ -1,4 +1,4 @@
-import React from "react";
+
 import "./DeleteModal.css";
 
 const DeleteModal = ({ message, onConfirm, onCancel }) => {
