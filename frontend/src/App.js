@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/HomePage";
-import DisplayProducts from "./pages/DisplayProducts";
-import AddProduct from "./pages/AddProduct";
-import Navbar from "./components/Navbar/Navbar";
-import SeeProduct from "./pages/SeeProduct";
+import Home from "./Pages/HomePage";
+import DisplayProducts from "./Pages/DisplayProducts";
+import AddProduct from "./Pages/AddProduct";
+import Navbar from "./components/navbar/Navbar";
+import SeeProduct from "./Pages/SeeProduct";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";

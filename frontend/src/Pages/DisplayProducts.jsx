@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import AllProducts from "../components/AllProducts/AllProducts";
 import CategorySelect from "../components/dropdown/CategorySelect";
 import "./CSS/DisplayProducts.css";
-import Search from "../components/Search/Search";
+import Search from "../components/search/Search";
 import { toast } from "react-toastify";
 
 const API_URL = process.env.REACT_APP_API_URL;
