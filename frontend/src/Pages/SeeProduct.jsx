@@ -19,7 +19,7 @@ const SeeProduct = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await fetch(`${API_URL}/products/${id}`);
+        const res = await fetch(`${API_URL}/api/products/${id}`);
         if (!res.ok) throw new Error("Failed to fetch product");
         const data = await res.json();
         setProduct(data);
@@ -35,7 +35,7 @@ const SeeProduct = () => {
 
   const handleDelete = async () => {
     try {
-      const res = await fetch(`${API_URL}/products/${id}`, {
+      const res = await fetch(`${API_URL}/api/products/${id}`, {
         method: "DELETE",
       });
       if (!res.ok) throw new Error("Failed to delete product");
@@ -50,7 +50,7 @@ const SeeProduct = () => {
 
   const handleEditSave = async (updatedData) => {
     try {
-      const res = await fetch(`${API_URL}/products/${id}`, {
+      const res = await fetch(`${API_URL}/api/products/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedData),

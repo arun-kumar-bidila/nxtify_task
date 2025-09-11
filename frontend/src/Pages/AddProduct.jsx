@@ -103,7 +103,7 @@ const AddProduct = () => {
     const productData = { name, price, category, description, image: imageUrl };
 
     try {
-      const res = await fetch(`${API_URL}/products`, {
+      const res = await fetch(`${API_URL}/api/products`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(productData),
