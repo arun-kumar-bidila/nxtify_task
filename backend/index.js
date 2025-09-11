@@ -1,4 +1,4 @@
-// index.js
+
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -9,23 +9,26 @@ dotenv.config();
 
 const app = express();
 
-// Middleware
-app.use(cors());
-app.use(express.json()); // to parse JSON bodies
+
+
+app.use(cors({
+  origin: "https://nxtify-task.vercel.app/",
+  methods: ["GET", "POST", "PUT", "DELETE"], 
+}));
+
+app.use(express.json()); 
 app.use("/api/products", productRoutes);
 
-// MongoDB connection
+
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("✅ MongoDB connected"))
-  .catch((err) => console.error("❌ MongoDB connection error:", err));
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.error("MongoDB connection error:", err));
 
 
-
-// Server listen
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`✅ Server is running on http://localhost:${PORT}`);

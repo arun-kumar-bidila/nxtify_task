@@ -1,6 +1,6 @@
 const Product = require("../models/product");
 
-// GET all products
+
 exports.getAllProducts = async (req, res) => {
   try {
     const products = await Product.find().sort({ createdAt: -1 });
@@ -10,7 +10,7 @@ exports.getAllProducts = async (req, res) => {
   }
 };
 
-// Get single product by ID
+
 exports.getProductById = async (req, res) => {
   const { id } = req.params;
   try {
@@ -23,7 +23,7 @@ exports.getProductById = async (req, res) => {
   }
 };
 
-// ADD new product
+
 exports.addProduct = async (req, res) => {
   const { name, price, category, description, image } = req.body;
 
@@ -37,7 +37,7 @@ exports.addProduct = async (req, res) => {
       price,
       category,
       description,
-      image, // if image not provided, default from model will be used
+      image, 
     });
 
     const savedProduct = await newProduct.save();
@@ -47,7 +47,7 @@ exports.addProduct = async (req, res) => {
   }
 };
 
-// DELETE product by ID
+
 exports.deleteProduct = async (req, res) => {
   try {
     const deletedProduct = await Product.findByIdAndDelete(req.params.id);
@@ -60,7 +60,7 @@ exports.deleteProduct = async (req, res) => {
   }
 };
 
-// UPDATE product by ID
+
 exports.updateProduct = async (req, res) => {
   const { name, price, category, description, image } = req.body;
 

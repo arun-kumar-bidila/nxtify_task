@@ -37,7 +37,7 @@ const productSchema = new mongoose.Schema(
         image: {
             type: String,
             default:
-                "https://res.cloudinary.com/demo/image/upload/v1690000000/default-product.png", // fallback default image
+                "https://res.cloudinary.com/demo/image/upload/v1690000000/default-product.png", 
         },
     },
     { timestamps: true }
