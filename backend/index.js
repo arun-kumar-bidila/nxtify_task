@@ -12,7 +12,7 @@ const app = express();
 
 
 app.use(cors({
-  origin: "https://nxtify-task.vercel.app/",
+  origin: "https://nxtify-task.vercel.app",
   methods: ["GET", "POST", "PUT", "DELETE"], 
 }));
 
